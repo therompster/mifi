@@ -1,5 +1,6 @@
 NOTES FOR RAMI :
-__Core Authentication and User Management
+<pre><b>Core Authentication and User Management</b>
+
 
 POST /api/register - Register a new user
 POST /api/login - Authenticate and receive a JWT token
@@ -23,7 +24,7 @@ Budget and Goal Management
 GET /api/budget - Get all budget categories
 PUT /api/budget - Update a budget category
 GET /api/goals - Get all savings goals
-PUT /api/goals - Update a savings goal__ 
+PUT /api/goals - Update a savings goal </b> </pre>
 
 __ TO BE COMPLETED __
 Plaid Integration
