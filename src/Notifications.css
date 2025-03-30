@@ -1,0 +1,40 @@
+/* src/components/Notifications.css */
+  .notifications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .notification-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .notification-message {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .notification-icon {
+    font-size: 20px;
+    color: #666;
+  }
+
+  .notification-timestamp {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .delete-button {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 20px;
+  }

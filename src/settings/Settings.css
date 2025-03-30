@@ -1,0 +1,79 @@
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 16px;
+    z-index: 2000;
+}
+
+.settings-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Add max-height to make the modal scrollable */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.settings-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.settings-close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.settings-content {
+    display: flex;
+    width: 100%;
+}
+
+.settings-nav {
+    width: 200px;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+    float: left;
+}
+
+.settings-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: left; /* Left-align the nav links */
+}
+
+.settings-nav li {
+    padding: 10px 0;
+    cursor: pointer;
+    color: #32BC9B;
+}
+
+.settings-nav li:hover {
+    text-decoration: underline;
+}
+
+.settings-tab-content {
+    flex: 1;
+    padding-left: 20px;
+}
