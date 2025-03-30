@@ -1,3 +1,78 @@
+NOTES FOR RAMI :
+__Core Authentication and User Management
+
+POST /api/register - Register a new user
+POST /api/login - Authenticate and receive a JWT token
+POST /api/reset-password - Request a password reset
+POST /api/new-password - Set a new password with a reset token
+GET /api/profile - Retrieve user profile information
+PUT /api/profile - Update user profile information
+
+Transaction Management
+
+GET /api/transactions - Get all transactions
+POST /api/transactions - Add a new transaction
+
+Subscription Management
+
+GET /api/subscriptions - Get all subscriptions
+POST /api/subscriptions - Add a new subscription
+
+Budget and Goal Management
+
+GET /api/budget - Get all budget categories
+PUT /api/budget - Update a budget category
+GET /api/goals - Get all savings goals
+PUT /api/goals - Update a savings goal__ 
+
+__ TO BE COMPLETED __
+Plaid Integration
+
+GET /api/plaid/create_link_token - Create a Plaid Link token
+POST /api/plaid/exchange_public_token - Exchange token and connect bank
+GET /api/plaid/accounts - Get all connected bank accounts
+DELETE /api/plaid/accounts/ - Unlink a bank account
+POST /api/plaid/transactions/refresh - Refresh transactions from Plaid
+
+Account and Financial Overview
+
+GET /api/account-overview - Get account summary (balances, income, expenses)
+
+User Preferences
+
+GET /api/app-preferences - Get app preferences (currency, theme, language)
+PUT /api/app-preferences - Update app preferences
+GET /api/notifications - Get notification preferences
+PUT /api/notifications - Update notification preferences
+
+Financial Insights
+
+GET /api/insights/spending-trends - Get spending trends over time
+GET /api/insights/income-analysis - Get income analysis
+GET /api/insights/expense-analysis - Get expense analysis
+GET /api/insights/budget-analysis - Get budget analysis
+GET /api/insights/personalized - Get personalized financial insights
+GET /api/insights/financial-health - Get financial health score
+
+Financial Advisor (LLM-based)
+
+POST /api/advisor - Get comprehensive financial advice
+GET /api/advisor/history - Get chat history with advisor
+POST /api/advisor/chat - Chat with financial advisor
+
+Educational Content
+
+GET /api/education - Get list of educational content
+GET /api/education/ - Get specific educational content
+GET /api/education/categories - Get educational content categories
+
+Static Content
+
+GET /api/faq - Get FAQ content
+GET /api/terms - Get terms of service content
+GET /api/contact - Get contact information
+POST /api/contact - Submit a contact form
+
 # IFi Financial Literacy App - MySQL Backend API
 
 This is the Flask backend API for the IFi Financial Literacy App, providing endpoints for user management, transactions, budgeting, savings goals, and bank account integration via Plaid. This implementation uses MySQL/MariaDB for the database.
