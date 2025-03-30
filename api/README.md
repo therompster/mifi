@@ -180,3 +180,459 @@ This application uses JWT for authentication, but for a production environment y
 3. Adding additional security headers
 4. Setting up proper database backups
 5. Securing your MySQL/MariaDB installation
+
+API Examples :
+# IFi Financial Literacy App API Documentation
+
+This document provides sample API calls and JSON payloads for each endpoint of the IFi Financial Literacy application.
+
+## Base URL
+
+http://localhost:5000/api
+
+bash
+Copy
+
+## Authentication Endpoints
+
+### Register a New User
+
+**Endpoint:** `POST /register`
+
+**Request Body:**
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "password": "securePassword123",
+  "dob": "1990-01-15",
+  "phone": "123-456-7890",
+  "country": "USA"
+}
+Response (201 Created):
+
+json
+Copy
+{
+  "message": "Registration successful!"
+}
+Login
+Endpoint: POST /login
+
+Request Body:
+
+json
+Copy
+{
+  "email": "john.doe@example.com",
+  "password": "securePassword123"
+}
+Response (200 OK):
+
+json
+Copy
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com"
+  }
+}
+Request Password Reset
+Endpoint: POST /reset-password
+
+Request Body:
+
+json
+Copy
+{
+  "email": "john.doe@example.com"
+}
+Response (200 OK):
+
+json
+Copy
+{
+  "message": "Password reset link sent",
+  "resetLink": "http://localhost:3000/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+Set New Password
+Endpoint: POST /new-password
+
+Request Body:
+
+json
+Copy
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "password": "newSecurePassword456"
+}
+Response (200 OK):
+
+json
+Copy
+{
+  "message": "Password has been reset!"
+}
+Transaction Endpoints
+Note: All of the following endpoints require an Authorization header:
+
+makefile
+Copy
+Authorization: Bearer <token>
+Get All Transactions
+Endpoint: GET /transactions
+
+Response (200 OK):
+
+json
+Copy
+[
+  {
+    "id": 1,
+    "date": "2024-01-15",
+    "description": "Grocery Store",
+    "amount": 56.78,
+    "type": "debit",
+    "category": "Food",
+    "method": "Card"
+  },
+  {
+    "id": 2,
+    "date": "2024-01-14",
+    "description": "Salary Deposit",
+    "amount": 2500.00,
+    "type": "credit",
+    "category": "Income",
+    "method": "ACH"
+  }
+]
+Add a Transaction
+Endpoint: POST /transactions
+
+Request Body:
+
+json
+Copy
+{
+  "date": "2024-03-20",
+  "description": "Restaurant Dinner",
+  "amount": 85.50,
+  "type": "debit",
+  "category": "Food",
+  "method": "Card"
+}
+Response (201 Created):
+
+json
+Copy
+{
+  "message": "Transaction added!",
+  "id": 6
+}
+Subscription Endpoints
+Get All Subscriptions
+Endpoint: GET /subscriptions
+
+Response (200 OK):
+
+json
+Copy
+[
+  {
+    "id": 1,
+    "name": "Netflix",
+    "amount": 15.99,
+    "billingCycle": "Monthly",
+    "nextBilling": "2024-04-15",
+    "category": "Entertainment"
+  },
+  {
+    "id": 2,
+    "name": "Spotify Family",
+    "amount": 14.99,
+    "billingCycle": "Monthly",
+    "nextBilling": "2024-04-18",
+    "category": "Entertainment"
+  }
+]
+Add a Subscription
+Endpoint: POST /subscriptions
+
+Request Body:
+
+json
+Copy
+{
+  "name": "Disney+",
+  "amount": 7.99,
+  "billingCycle": "Monthly",
+  "nextBilling": "2024-04-20",
+  "category": "Entertainment"
+}
+Response (201 Created):
+
+json
+Copy
+{
+  "message": "Subscription added!",
+  "id": 6
+}
+Budget Endpoints
+Get Budget Categories
+Endpoint: GET /budget
+
+Response (200 OK):
+
+json
+Copy
+[
+  {
+    "id": 1,
+    "category": "Food",
+    "budget": 600.00,
+    "spent": 450.00,
+    "color": "#FF6384"
+  },
+  {
+    "id": 2,
+    "category": "Utilities",
+    "budget": 400.00,
+    "spent": 300.00,
+    "color": "#36A2EB"
+  }
+]
+Update Budget Category
+Endpoint: PUT /budget
+
+Request Body:
+
+json
+Copy
+{
+  "id": 1,
+  "budget": 650.00,
+  "spent": 450.00
+}
+Response (200 OK):
+
+json
+Copy
+{
+  "message": "Budget updated!"
+}
+Savings Goals Endpoints
+Get Savings Goals
+Endpoint: GET /goals
+
+Response (200 OK):
+
+json
+Copy
+[
+  {
+    "id": 1,
+    "category": "Emergency Fund",
+    "target": 5000.00,
+    "saved": 2500.00,
+    "color": "#FF6384"
+  },
+  {
+    "id": 2,
+    "category": "Vacation",
+    "target": 1500.00,
+    "saved": 800.00,
+    "color": "#36A2EB"
+  }
+]
+Update Savings Goal
+Endpoint: PUT /goals
+
+Request Body:
+
+json
+Copy
+{
+  "id": 1,
+  "target": 5000.00,
+  "saved": 2700.00
+}
+Response (200 OK):
+
+json
+Copy
+{
+  "message": "Goal updated!"
+}
+User Profile Endpoints
+Get User Profile
+Endpoint: GET /profile
+
+Response (200 OK):
+
+json
+Copy
+{
+  "id": 1,
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "dob": "1990-01-15",
+  "phone": "123-456-7890",
+  "country": "USA"
+}
+Update User Profile
+Endpoint: PUT /profile
+
+Request Body:
+
+json
+Copy
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "phone": "987-654-3210",
+  "country": "Canada"
+}
+Response (200 OK):
+
+json
+Copy
+{
+  "message": "Profile updated!"
+}
+Plaid Integration Endpoints
+Create Link Token
+Endpoint: GET /plaid/create_link_token
+
+Response (200 OK):
+
+json
+Copy
+{
+  "link_token": "link-sandbox-123xyz...",
+  "expiration": "2024-04-01T12:00:00Z",
+  "request_id": "request-id-123"
+}
+Exchange Public Token
+Endpoint: POST /plaid/exchange_public_token
+
+Request Body:
+
+json
+Copy
+{
+  "public_token": "public-sandbox-123xyz...",
+  "institution_id": "ins_123",
+  "institution_name": "Chase"
+}
+Response (200 OK):
+
+json
+Copy
+{
+  "message": "Bank account linked successfully!",
+  "item_id": 1
+}
+Get Accounts
+Endpoint: GET /plaid/accounts
+
+Response (200 OK):
+
+json
+Copy
+[
+  {
+    "id": 1,
+    "name": "Checking Account",
+    "mask": "1234",
+    "type": "depository",
+    "subtype": "checking",
+    "current_balance": 1250.45,
+    "available_balance": 1200.00,
+    "institution_name": "Chase"
+  },
+  {
+    "id": 2,
+    "name": "Savings Account",
+    "mask": "5678",
+    "type": "depository",
+    "subtype": "savings",
+    "current_balance": 5500.00,
+    "available_balance": 5500.00,
+    "institution_name": "Chase"
+  }
+]
+Refresh Transactions
+Endpoint: POST /plaid/transactions/refresh
+
+Response (200 OK):
+
+json
+Copy
+{
+  "message": "Transactions refreshed successfully!"
+}
+Get Spending by Category
+Endpoint: GET /plaid/spending_by_category?start_date=2024-01-01&end_date=2024-03-31
+
+Response (200 OK):
+
+json
+Copy
+[
+  {
+    "category": "Food and Drink",
+    "amount": 850.75
+  },
+  {
+    "category": "Travel",
+    "amount": 1200.50
+  },
+  {
+    "category": "Shopping",
+    "amount": 560.25
+  }
+]
+Testing with cURL
+Login and Store Token
+bash
+Copy
+curl -X POST http://localhost:5000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"john.doe@example.com","password":"securePassword123"}' \
+  | jq '.token' -r > token.txt
+Get Transactions with Stored Token
+bash
+Copy
+curl -X GET http://localhost:5000/api/transactions \
+  -H "Authorization: Bearer $(cat token.txt)"
+Add a New Transaction
+bash
+Copy
+curl -X POST http://localhost:5000/api/transactions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $(cat token.txt)" \
+  -d '{"date":"2024-03-20","description":"Restaurant Dinner","amount":85.50,"type":"debit","category":"Food","method":"Card"}'
+Testing with Postman
+Create a new collection for IFi APIs.
+
+Add a POST request for login.
+
+Add a test script to store the token:
+
+javascript
+Copy
+if (pm.response.code === 200) {
+  var jsonData = pm.response.json();
+  pm.globals.set("auth_token", jsonData.token);
+}
+For subsequent requests, add the following header:
+
+css
+Copy
+Authorization: Bearer {{auth_token}}
