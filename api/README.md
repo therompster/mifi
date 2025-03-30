@@ -190,9 +190,6 @@ This document provides sample API calls and JSON payloads for each endpoint of t
 
 http://localhost:5000/api
 
-bash
-Copy
-
 ## Authentication Endpoints
 
 ### Register a New User
@@ -213,8 +210,6 @@ Copy
 }
 Response (201 Created):
 
-json
-Copy
 {
   "message": "Registration successful!"
 }
@@ -223,16 +218,12 @@ Endpoint: POST /login
 
 Request Body:
 
-json
-Copy
 {
   "email": "john.doe@example.com",
   "password": "securePassword123"
 }
 Response (200 OK):
 
-json
-Copy
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
@@ -247,15 +238,11 @@ Endpoint: POST /reset-password
 
 Request Body:
 
-json
-Copy
 {
   "email": "john.doe@example.com"
 }
 Response (200 OK):
 
-json
-Copy
 {
   "message": "Password reset link sent",
   "resetLink": "http://localhost:3000/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -265,32 +252,25 @@ Endpoint: POST /new-password
 
 Request Body:
 
-json
-Copy
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "password": "newSecurePassword456"
 }
 Response (200 OK):
 
-json
-Copy
 {
   "message": "Password has been reset!"
 }
 Transaction Endpoints
 Note: All of the following endpoints require an Authorization header:
 
-makefile
-Copy
+
 Authorization: Bearer <token>
 Get All Transactions
 Endpoint: GET /transactions
 
 Response (200 OK):
 
-json
-Copy
 [
   {
     "id": 1,
@@ -316,8 +296,6 @@ Endpoint: POST /transactions
 
 Request Body:
 
-json
-Copy
 {
   "date": "2024-03-20",
   "description": "Restaurant Dinner",
@@ -328,8 +306,6 @@ Copy
 }
 Response (201 Created):
 
-json
-Copy
 {
   "message": "Transaction added!",
   "id": 6
@@ -340,8 +316,7 @@ Endpoint: GET /subscriptions
 
 Response (200 OK):
 
-json
-Copy
+
 [
   {
     "id": 1,
@@ -365,8 +340,7 @@ Endpoint: POST /subscriptions
 
 Request Body:
 
-json
-Copy
+
 {
   "name": "Disney+",
   "amount": 7.99,
@@ -376,8 +350,7 @@ Copy
 }
 Response (201 Created):
 
-json
-Copy
+
 {
   "message": "Subscription added!",
   "id": 6
@@ -388,8 +361,7 @@ Endpoint: GET /budget
 
 Response (200 OK):
 
-json
-Copy
+
 [
   {
     "id": 1,
@@ -411,8 +383,7 @@ Endpoint: PUT /budget
 
 Request Body:
 
-json
-Copy
+
 {
   "id": 1,
   "budget": 650.00,
@@ -420,8 +391,7 @@ Copy
 }
 Response (200 OK):
 
-json
-Copy
+
 {
   "message": "Budget updated!"
 }
@@ -431,8 +401,7 @@ Endpoint: GET /goals
 
 Response (200 OK):
 
-json
-Copy
+
 [
   {
     "id": 1,
@@ -454,8 +423,7 @@ Endpoint: PUT /goals
 
 Request Body:
 
-json
-Copy
+
 {
   "id": 1,
   "target": 5000.00,
@@ -463,8 +431,7 @@ Copy
 }
 Response (200 OK):
 
-json
-Copy
+
 {
   "message": "Goal updated!"
 }
@@ -474,8 +441,7 @@ Endpoint: GET /profile
 
 Response (200 OK):
 
-json
-Copy
+
 {
   "id": 1,
   "firstName": "John",
@@ -490,8 +456,7 @@ Endpoint: PUT /profile
 
 Request Body:
 
-json
-Copy
+
 {
   "firstName": "John",
   "lastName": "Doe",
@@ -500,8 +465,6 @@ Copy
 }
 Response (200 OK):
 
-json
-Copy
 {
   "message": "Profile updated!"
 }
@@ -511,8 +474,7 @@ Endpoint: GET /plaid/create_link_token
 
 Response (200 OK):
 
-json
-Copy
+
 {
   "link_token": "link-sandbox-123xyz...",
   "expiration": "2024-04-01T12:00:00Z",
@@ -523,8 +485,7 @@ Endpoint: POST /plaid/exchange_public_token
 
 Request Body:
 
-json
-Copy
+
 {
   "public_token": "public-sandbox-123xyz...",
   "institution_id": "ins_123",
@@ -532,8 +493,7 @@ Copy
 }
 Response (200 OK):
 
-json
-Copy
+
 {
   "message": "Bank account linked successfully!",
   "item_id": 1
@@ -543,8 +503,7 @@ Endpoint: GET /plaid/accounts
 
 Response (200 OK):
 
-json
-Copy
+
 [
   {
     "id": 1,
@@ -572,8 +531,7 @@ Endpoint: POST /plaid/transactions/refresh
 
 Response (200 OK):
 
-json
-Copy
+
 {
   "message": "Transactions refreshed successfully!"
 }
@@ -582,8 +540,7 @@ Endpoint: GET /plaid/spending_by_category?start_date=2024-01-01&end_date=2024-03
 
 Response (200 OK):
 
-json
-Copy
+
 [
   {
     "category": "Food and Drink",
@@ -598,22 +555,21 @@ Copy
     "amount": 560.25
   }
 ]
+
 Testing with cURL
 Login and Store Token
-bash
-Copy
+
 curl -X POST http://localhost:5000/api/login \
   -H "Content-Type: application/json" \
   -d '{"email":"john.doe@example.com","password":"securePassword123"}' \
   | jq '.token' -r > token.txt
 Get Transactions with Stored Token
-bash
-Copy
+
 curl -X GET http://localhost:5000/api/transactions \
   -H "Authorization: Bearer $(cat token.txt)"
+
 Add a New Transaction
-bash
-Copy
+
 curl -X POST http://localhost:5000/api/transactions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $(cat token.txt)" \
@@ -625,14 +581,12 @@ Add a POST request for login.
 
 Add a test script to store the token:
 
-javascript
-Copy
+
 if (pm.response.code === 200) {
   var jsonData = pm.response.json();
   pm.globals.set("auth_token", jsonData.token);
 }
 For subsequent requests, add the following header:
 
-css
-Copy
+
 Authorization: Bearer {{auth_token}}
