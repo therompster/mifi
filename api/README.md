@@ -18,8 +18,6 @@ This is the Flask backend API for the IFi Financial Literacy App, providing endp
 sudo apt-get update
 sudo apt-get install mysql-server
 
-# On macOS with Homebrew
-brew install mysql
 ```
 
 2. Run the database setup script to create the database and user
@@ -31,6 +29,7 @@ chmod +x setup_mysql.sh
 ./setup_mysql.sh
 ```
 
+NOT NECESSARY
 Alternatively, you can manually create the database and user:
 ```bash
 sudo mysql -u root -p
@@ -55,7 +54,7 @@ EXIT;
 1. Clone this repository
 ```bash
 git clone <repository-url>
-cd ifi-backend
+cd cloned dir 
 ```
 
 2. Create a virtual environment (recommended)
