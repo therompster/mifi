@@ -101,24 +101,16 @@ sudo apt-get install mysql-server (for GCP PLEASE USE --- sudo apt-get install m
 #Start db
 sudo service mariadb start
 # Make the script executable
-chmod +x setup_mysql.sh
+sudo chmod +x setup_mysql.sh
 
 # Run the script
-./setup_mysql.sh
+sudo ./setup_mysql.sh
 ```
 
 NOT NECESSARY
 Alternatively, you can manually create the database and user:
 ```bash
 sudo mysql -u root -p
-```
-
-```sql
-CREATE DATABASE ifi_finance;
-CREATE USER 'ifi_user'@'localhost' IDENTIFIED BY 'ifi_password';
-GRANT ALL PRIVILEGES ON ifi_finance.* TO 'ifi_user'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
 ```
 
 ### Plaid Setup
