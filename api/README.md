@@ -92,7 +92,7 @@ This is the Flask backend API for the IFi Financial Literacy App, providing endp
 ```bash
 # On Ubuntu
 sudo apt-get update
-sudo apt-get install mysql-server
+sudo apt-get install mysql-server (for GCP PLEASE USE --- sudo apt-get install mariadb-server)
 
 ```
 
