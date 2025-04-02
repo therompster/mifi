@@ -96,14 +96,14 @@ sudo apt-get install mysql-server (for GCP PLEASE USE --- sudo apt-get install m
 
 ```
 
-2. Run the database setup script to create the database and user
+~ ~2. Run the database setup script to create the database and user
 ```bash
 # Make the script executable
 chmod +x setup_mysql.sh
 
 # Run the script
 ./setup_mysql.sh
-```
+```~ ~
 
 NOT NECESSARY
 Alternatively, you can manually create the database and user:
